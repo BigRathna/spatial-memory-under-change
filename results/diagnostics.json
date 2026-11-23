@@ -1,0 +1,185 @@
+{
+  "config": {
+    "object_counts": [
+      3,
+      5,
+      10,
+      20,
+      30
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 60
+  },
+  "wall_seconds": 35.12793698200039,
+  "rows": [
+    {
+      "n_objects": 3,
+      "memory": "graph",
+      "current_success@2_mean": 1.0,
+      "current_success@2_std": 0.0,
+      "past_success@2_mean": 0.8666666666666667,
+      "past_success@2_std": 0.1527525231651947,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 2176.0
+    },
+    {
+      "n_objects": 3,
+      "memory": "dense",
+      "current_success@2_mean": 1.0,
+      "current_success@2_std": 0.0,
+      "past_success@2_mean": 0.8333333333333334,
+      "past_success@2_std": 0.1527525231651947,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 24576.0
+    },
+    {
+      "n_objects": 3,
+      "memory": "implicit",
+      "current_success@2_mean": 0.06666666666666667,
+      "current_success@2_std": 0.05773502691896258,
+      "past_success@2_mean": 0.06666666666666667,
+      "past_success@2_std": 0.11547005383792518,
+      "stale_answer_rate_mean": 0.9333333333333332,
+      "stale_answer_rate_std": 0.05773502691896257,
+      "size_bytes_mean": 3960.0
+    },
+    {
+      "n_objects": 5,
+      "memory": "graph",
+      "current_success@2_mean": 1.0,
+      "current_success@2_std": 0.0,
+      "past_success@2_mean": 0.9333333333333332,
+      "past_success@2_std": 0.11547005383792514,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 2256.0
+    },
+    {
+      "n_objects": 5,
+      "memory": "dense",
+      "current_success@2_mean": 1.0,
+      "current_success@2_std": 0.0,
+      "past_success@2_mean": 0.7666666666666666,
+      "past_success@2_std": 0.1527525231651947,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 24576.0
+    },
+    {
+      "n_objects": 5,
+      "memory": "implicit",
+      "current_success@2_mean": 0.19999999999999998,
+      "current_success@2_std": 0.17320508075688773,
+      "past_success@2_mean": 0.2333333333333333,
+      "past_success@2_std": 0.2516611478423583,
+      "stale_answer_rate_mean": 0.7999999999999999,
+      "stale_answer_rate_std": 0.17320508075688776,
+      "size_bytes_mean": 4032.0
+    },
+    {
+      "n_objects": 10,
+      "memory": "graph",
+      "current_success@2_mean": 0.9333333333333332,
+      "current_success@2_std": 0.11547005383792514,
+      "past_success@2_mean": 0.9333333333333332,
+      "past_success@2_std": 0.05773502691896257,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 5973.333333333333
+    },
+    {
+      "n_objects": 10,
+      "memory": "dense",
+      "current_success@2_mean": 0.9333333333333332,
+      "current_success@2_std": 0.11547005383792514,
+      "past_success@2_mean": 0.7333333333333334,
+      "past_success@2_std": 0.11547005383792519,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 24576.0
+    },
+    {
+      "n_objects": 10,
+      "memory": "implicit",
+      "current_success@2_mean": 0.13333333333333333,
+      "current_success@2_std": 0.11547005383792516,
+      "past_success@2_mean": 0.06666666666666667,
+      "past_success@2_std": 0.05773502691896258,
+      "stale_answer_rate_mean": 0.85,
+      "stale_answer_rate_std": 0.1322875655532295,
+      "size_bytes_mean": 7808.0
+    },
+    {
+      "n_objects": 20,
+      "memory": "graph",
+      "current_success@2_mean": 0.9333333333333332,
+      "current_success@2_std": 0.05773502691896257,
+      "past_success@2_mean": 0.9333333333333332,
+      "past_success@2_std": 0.11547005383792514,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 10832.0
+    },
+    {
+      "n_objects": 20,
+      "memory": "dense",
+      "current_success@2_mean": 0.9333333333333332,
+      "current_success@2_std": 0.05773502691896257,
+      "past_success@2_mean": 0.6666666666666666,
+      "past_success@2_std": 0.2081665999466133,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 24576.0
+    },
+    {
+      "n_objects": 20,
+      "memory": "implicit",
+      "current_success@2_mean": 0.03333333333333333,
+      "current_success@2_std": 0.05773502691896258,
+      "past_success@2_mean": 0.0,
+      "past_success@2_std": 0.0,
+      "stale_answer_rate_mean": 0.9629629629629629,
+      "stale_answer_rate_std": 0.06415002990995845,
+      "size_bytes_mean": 11832.0
+    },
+    {
+      "n_objects": 30,
+      "memory": "graph",
+      "current_success@2_mean": 0.8666666666666667,
+      "current_success@2_std": 0.11547005383792512,
+      "past_success@2_mean": 0.8666666666666667,
+      "past_success@2_std": 0.11547005383792514,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 15376.0
+    },
+    {
+      "n_objects": 30,
+      "memory": "dense",
+      "current_success@2_mean": 0.8666666666666667,
+      "current_success@2_std": 0.11547005383792512,
+      "past_success@2_mean": 0.6333333333333333,
+      "past_success@2_std": 0.05773502691896257,
+      "stale_answer_rate_mean": 0.0,
+      "stale_answer_rate_std": 0.0,
+      "size_bytes_mean": 24576.0
+    },
+    {
+      "n_objects": 30,
+      "memory": "implicit",
+      "current_success@2_mean": 0.03333333333333333,
+      "current_success@2_std": 0.05773502691896258,
+      "past_success@2_mean": 0.0,
+      "past_success@2_std": 0.0,
+      "stale_answer_rate_mean": 0.9583333333333334,
+      "stale_answer_rate_std": 0.07216878364870323,
+      "size_bytes_mean": 12168.0
+    }
+  ]
+}

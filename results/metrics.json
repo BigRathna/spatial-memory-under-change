@@ -1,0 +1,355 @@
+{
+  "aggregate": {
+    "dense": {
+      "current_success@2": [
+        0.8799999999999999,
+        0.06928203230275509
+      ],
+      "growth@10": [
+        24576.0,
+        0.0
+      ],
+      "growth@30": [
+        24576.0,
+        0.0
+      ],
+      "growth@60": [
+        24576.0,
+        0.0
+      ],
+      "past_success@2": [
+        0.6933333333333334,
+        0.10066445913694336
+      ],
+      "peak_mem_bytes": [
+        31175.0,
+        3067.9548562519626
+      ],
+      "query_ms": [
+        0.13384674342281264,
+        0.006360686248787737
+      ],
+      "region_precision": [
+        0.22790103415103413,
+        0.07437332643762998
+      ],
+      "region_recall": [
+        0.46,
+        0.1562049935181331
+      ],
+      "size_bytes": [
+        24576.0,
+        0.0
+      ],
+      "stale_answer_rate": [
+        0.0,
+        0.0
+      ],
+      "stale_precision": [
+        0.9884444444444443,
+        0.020014809331907066
+      ],
+      "stale_recall": [
+        1.0,
+        0.0
+      ],
+      "update_ms": [
+        0.14162530553423694,
+        0.009134282863270081
+      ],
+      "voxel_collisions": [
+        3.0,
+        4.358898943540674
+      ]
+    },
+    "graph": {
+      "current_success@2": [
+        0.8799999999999999,
+        0.06928203230275509
+      ],
+      "growth@10": [
+        2896.0,
+        232.4134247413432
+      ],
+      "growth@30": [
+        7626.666666666667,
+        839.0979283333581
+      ],
+      "growth@60": [
+        15376.0,
+        1249.332621842558
+      ],
+      "past_success@2": [
+        0.8666666666666667,
+        0.1006644591369433
+      ],
+      "peak_mem_bytes": [
+        63341.333333333336,
+        12571.61586007675
+      ],
+      "query_ms": [
+        0.1479018600002746,
+        0.015718272416836616
+      ],
+      "region_precision": [
+        0.44398731714908185,
+        0.14410460368690264
+      ],
+      "region_recall": [
+        0.5133333333333333,
+        0.1747378989610821
+      ],
+      "size_bytes": [
+        15376.0,
+        1249.332621842558
+      ],
+      "stale_answer_rate": [
+        0.0,
+        0.0
+      ],
+      "stale_precision": [
+        1.0,
+        0.0
+      ],
+      "stale_recall": [
+        1.0,
+        0.0
+      ],
+      "update_ms": [
+        0.016228411146180913,
+        0.0014638532341449714
+      ],
+      "voxel_collisions": null
+    },
+    "implicit": {
+      "current_success@2": [
+        0.02666666666666667,
+        0.023094010767585032
+      ],
+      "growth@10": [
+        4840.0,
+        240.39966722106752
+      ],
+      "growth@30": [
+        9608.0,
+        848.3018330759401
+      ],
+      "growth@60": [
+        12168.0,
+        24.0
+      ],
+      "past_success@2": [
+        0.013333333333333334,
+        0.023094010767585032
+      ],
+      "peak_mem_bytes": [
+        1361281.0,
+        15286.705204196227
+      ],
+      "query_ms": [
+        4.266237339991979,
+        0.16508723668180614
+      ],
+      "region_precision": [
+        0.03125,
+        0.04419417382415922
+      ],
+      "region_recall": [
+        0.013333333333333334,
+        0.023094010767585032
+      ],
+      "size_bytes": [
+        12168.0,
+        24.0
+      ],
+      "stale_answer_rate": [
+        0.9682539682539683,
+        0.027492869961410784
+      ],
+      "stale_precision": [
+        1.0,
+        0.0
+      ],
+      "stale_recall": [
+        1.0,
+        0.0
+      ],
+      "update_ms": [
+        40.720523972393295,
+        2.347423660632328
+      ],
+      "voxel_collisions": null
+    }
+  },
+  "config": {
+    "growth_steps": [
+      10,
+      30,
+      60
+    ],
+    "python": "3.12.12",
+    "queries_per_type": 25,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "steps": 60
+  },
+  "per_seed": {
+    "0": {
+      "dense": {
+        "current_success@2": 0.96,
+        "growth@10": 24576.0,
+        "growth@30": 24576.0,
+        "growth@60": 24576.0,
+        "past_success@2": 0.68,
+        "peak_mem_bytes": 34273.0,
+        "query_ms": 0.1406026501354063,
+        "region_precision": 0.1423611111111111,
+        "region_recall": 0.28,
+        "size_bytes": 24576.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 0.14065013365325285,
+        "voxel_collisions": 0.0
+      },
+      "graph": {
+        "current_success@2": 0.96,
+        "growth@10": 2656.0,
+        "growth@30": 7216.0,
+        "growth@60": 15008.0,
+        "past_success@2": 0.88,
+        "peak_mem_bytes": 76696.0,
+        "query_ms": 0.16104867983813165,
+        "region_precision": 0.3020833333333333,
+        "region_recall": 0.32,
+        "size_bytes": 15008.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 0.017847633231819298
+      },
+      "implicit": {
+        "current_success@2": 0.0,
+        "growth@10": 4608.0,
+        "growth@30": 9192.0,
+        "growth@60": 12144.0,
+        "past_success@2": 0.0,
+        "peak_mem_bytes": 1378821.0,
+        "query_ms": 4.298692620031943,
+        "region_precision": null,
+        "region_recall": 0.0,
+        "size_bytes": 12144.0,
+        "stale_answer_rate": 1.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 39.42494470023424
+      }
+    },
+    "1": {
+      "dense": {
+        "current_success@2": 0.84,
+        "growth@10": 24576.0,
+        "growth@30": 24576.0,
+        "growth@60": 24576.0,
+        "past_success@2": 0.6,
+        "peak_mem_bytes": 28138.0,
+        "query_ms": 0.13296411027113209,
+        "region_precision": 0.2772727272727273,
+        "region_recall": 0.56,
+        "size_bytes": 24576.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 0.1330177332420135,
+        "voxel_collisions": 1.0
+      },
+      "graph": {
+        "current_success@2": 0.84,
+        "growth@10": 2912.0,
+        "growth@30": 7072.0,
+        "growth@60": 14352.0,
+        "past_success@2": 0.76,
+        "peak_mem_bytes": 51736.0,
+        "query_ms": 0.15216519008390605,
+        "region_precision": 0.5901960784313726,
+        "region_recall": 0.56,
+        "size_bytes": 14352.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 0.015838866966078058
+      },
+      "implicit": {
+        "current_success@2": 0.04,
+        "growth@10": 4824.0,
+        "growth@30": 9048.0,
+        "growth@60": 12168.0,
+        "past_success@2": 0.04,
+        "peak_mem_bytes": 1350795.0,
+        "query_ms": 4.087332759954734,
+        "region_precision": 0.0625,
+        "region_recall": 0.04,
+        "size_bytes": 12168.0,
+        "stale_answer_rate": 0.9523809523809523,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 39.30639615021695
+      }
+    },
+    "2": {
+      "dense": {
+        "current_success@2": 0.84,
+        "growth@10": 24576.0,
+        "growth@30": 24576.0,
+        "growth@60": 24576.0,
+        "past_success@2": 0.8,
+        "peak_mem_bytes": 31114.0,
+        "query_ms": 0.1279734698618995,
+        "region_precision": 0.26406926406926406,
+        "region_recall": 0.54,
+        "size_bytes": 24576.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 0.9653333333333333,
+        "stale_recall": 1.0,
+        "update_ms": 0.15120804970744453,
+        "voxel_collisions": 8.0
+      },
+      "graph": {
+        "current_success@2": 0.84,
+        "growth@10": 3120.0,
+        "growth@30": 8592.0,
+        "growth@60": 16768.0,
+        "past_success@2": 0.96,
+        "peak_mem_bytes": 61592.0,
+        "query_ms": 0.13049171007878613,
+        "region_precision": 0.4396825396825396,
+        "region_recall": 0.66,
+        "size_bytes": 16768.0,
+        "stale_answer_rate": 0.0,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 0.014998733240645379
+      },
+      "implicit": {
+        "current_success@2": 0.04,
+        "growth@10": 5088.0,
+        "growth@30": 10584.0,
+        "growth@60": 12192.0,
+        "past_success@2": 0.0,
+        "peak_mem_bytes": 1354227.0,
+        "query_ms": 4.412686639989261,
+        "region_precision": 0.0,
+        "region_recall": 0.0,
+        "size_bytes": 12192.0,
+        "stale_answer_rate": 0.9523809523809523,
+        "stale_precision": 1.0,
+        "stale_recall": 1.0,
+        "update_ms": 43.43023106672869
+      }
+    }
+  },
+  "wall_seconds": 8.967093531999126
+}

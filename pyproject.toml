@@ -1,0 +1,9 @@
+[project]
+name = "huawei-spatial-memory"
+version = "0.1.0"
+description = "Benchmark of three spatial-memory representations under environmental change"
+requires-python = ">=3.12"
+dependencies = ["numpy", "matplotlib", "pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

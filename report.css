@@ -1,0 +1,13 @@
+/* Print layout used to check that REPORT.md fits on two A4 pages. */
+@page { size: A4; margin: 1.7cm 1.9cm; }
+body { font-family: "Liberation Serif", serif; font-size: 10.5pt; line-height: 1.25; margin: 0; }
+h1 { font-size: 16.5pt; margin: 0 0 0.35em 0; }
+h2 { font-size: 12pt; margin: 0.75em 0 0.28em 0; }
+p { margin: 0.38em 0; text-align: justify; }
+ul { margin: 0.32em 0 0.32em 1.15em; padding: 0; }
+li { margin: 0.18em 0; }
+table { border-collapse: collapse; width: 100%; font-size: 8.4pt; margin: 0.45em 0; }
+th, td { border: 0.4pt solid #777; padding: 1.3px 3px; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+img { width: 95%; max-height: 6.2cm; object-fit: contain; display: block; margin: 0.45em auto; }
+code { font-family: "Liberation Mono", monospace; font-size: 9pt; }
