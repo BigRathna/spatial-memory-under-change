@@ -166,6 +166,8 @@ def evaluate_memory(
     growth_steps: Sequence[int] = (10, 30, 60),
     lag: int = LAG,
     stale_age: int = STALE_AGE,
+    latency_checkpoints: Sequence[int] = (),
+    latency_window: int = 20,
 ) -> Dict[str, Optional[float]]:
     """Replay one episode through ``mem`` and score the scheduled queries.
 
@@ -173,6 +175,11 @@ def evaluate_memory(
     right after ``update`` at ``t``, so no memory ever sees future data.
     Update and query latency are wall-clock means; peak memory is the
     ``tracemalloc`` peak during the replay.
+
+    When ``latency_checkpoints`` is given, ``query_ms@C`` is the mean query
+    latency of queries issued in the window ``(C - latency_window, C]``.
+    This separates early-episode latency from late-episode latency in a long
+    run; the default (no checkpoints) leaves the metric set unchanged.
     """
     T = len(obs_steps)
     cur_at: Dict[int, list] = defaultdict(list)
@@ -190,6 +197,7 @@ def evaluate_memory(
 
     update_ms: List[float] = []
     query_ms: List[float] = []
+    query_samples: List[Tuple[int, float]] = []
     cur_hit = cur_ans = 0
     past_hit = past_ans = 0
     stale_answers = 0
@@ -197,6 +205,8 @@ def evaluate_memory(
     reg_r: List[float] = []
     st_p: List[float] = []
     st_r: List[float] = []
+    stale_total = 0
+    stale_answered = 0
     growth: Dict[int, int] = {}
 
     tracemalloc.start()
@@ -212,7 +222,9 @@ def evaluate_memory(
             for oid, true in cur_at.get(t, ()):
                 t0 = time.perf_counter()
                 ans = mem.query_current(oid, t)
-                query_ms.append((time.perf_counter() - t0) * 1e3)
+                dt = (time.perf_counter() - t0) * 1e3
+                query_ms.append(dt)
+                query_samples.append((t, dt))
                 if ans is None:
                     continue
                 cur_ans += 1
@@ -225,7 +237,9 @@ def evaluate_memory(
             for oid, true in past_at.get(t, ()):
                 t0 = time.perf_counter()
                 ans = mem.query_at(oid, t - lag)
-                query_ms.append((time.perf_counter() - t0) * 1e3)
+                dt = (time.perf_counter() - t0) * 1e3
+                query_ms.append(dt)
+                query_samples.append((t, dt))
                 if ans is None:
                     continue
                 past_ans += 1
@@ -237,7 +251,9 @@ def evaluate_memory(
                 t0 = time.perf_counter()
                 now = set(mem.query_region(bounds, t))
                 prev = set(mem.query_region(bounds, t - lag))
-                query_ms.append((time.perf_counter() - t0) * 1e3)
+                dt = (time.perf_counter() - t0) * 1e3
+                query_ms.append(dt)
+                query_samples.append((t, dt))
                 pred = now ^ prev
                 p, r = _prf(pred, gt_changed)
                 if p is not None:
@@ -248,7 +264,11 @@ def evaluate_memory(
             for gt_stale in stale_at.get(t, ()):
                 t0 = time.perf_counter()
                 pred = set(mem.stale_ids(t, stale_age))
-                query_ms.append((time.perf_counter() - t0) * 1e3)
+                dt = (time.perf_counter() - t0) * 1e3
+                query_ms.append(dt)
+                query_samples.append((t, dt))
+                stale_total += 1
+                stale_answered += int(bool(pred))
                 p, r = _prf(pred, gt_stale)
                 if p is not None:
                     st_p.append(p)
@@ -272,6 +292,9 @@ def evaluate_memory(
         "region_recall": _mean(reg_r),
         "stale_precision": _mean(st_p),
         "stale_recall": _mean(st_r),
+        "stale_coverage": (
+            stale_answered / stale_total if stale_total else None
+        ),
         "stale_answer_rate": stale_answers / cur_ans if cur_ans else None,
         "size_bytes": float(mem.size_bytes()),
         "peak_mem_bytes": float(peak),
@@ -280,6 +303,10 @@ def evaluate_memory(
     }
     for g in growth_steps:
         out[f"growth@{g}"] = float(growth[g]) if g in growth else None
+    for cp in latency_checkpoints:
+        low = int(cp) - int(latency_window)
+        vals = [dt for step, dt in query_samples if low < step <= int(cp)]
+        out[f"query_ms@{int(cp)}"] = float(np.mean(vals)) if vals else None
     if hasattr(mem, "collisions"):
         out["voxel_collisions"] = float(mem.collisions)
     return out

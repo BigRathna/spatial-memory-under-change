@@ -216,9 +216,13 @@ class DenseGridMemory(Memory):
 class ImplicitMemory(Memory):
     """A coordinate MLP over (x, y, z, t, object_id).
 
-    Architecture: 5 -> 32 tanh -> 1 sigmoid occupancy probability, trained
-    online with manual backprop and SGD (50 steps per update, learning rate
-    0.01, batch 32). Each batch is half positives drawn from the replay
+    Architecture: 5 -> ``hidden`` tanh -> [``hidden`` tanh ->] 1 sigmoid
+    occupancy probability, where ``hidden`` is 32, 64 or 128 and the second
+    hidden layer is present only when ``depth = 2``. The default
+    (32, depth 1) is the configuration used by the original benchmark.
+    Training is online with manual backprop and SGD (50 steps per update,
+    learning rate 0.01, batch 32). Each batch is half positives drawn from
+    the replay
     buffer and half negatives carrying the *same* id and step: half of the
     negatives are sampled within +-3 cells of a positive (hard negatives,
     which force a localized bump) and half uniformly over the grid (which
@@ -242,12 +246,15 @@ class ImplicitMemory(Memory):
     given id and step and return the highest-probability cell if it clears
     ``threshold``.
 
-    Persistent-size estimate: 8 bytes per weight (225 weights), 48 bytes per
-    replay-buffer entry, 24 bytes per tracked id in the last-seen map.
+    Persistent-size estimate: 8 bytes per weight (225 for the default
+    configuration), 48 bytes per replay-buffer entry, 24 bytes per tracked id
+    in the last-seen map.
     """
 
     IN_DIM = 5
     HIDDEN = 32
+    HIDDEN_CHOICES = (32, 64, 128)
+    DEPTH_CHOICES = (1, 2)
     LR = 0.01
     TRAIN_STEPS = 50
     BATCH = 32
@@ -267,7 +274,17 @@ class ImplicitMemory(Memory):
         batch: int = BATCH,
         buffer_size: int = 200,
         threshold: float = 0.5,
+        hidden: int = HIDDEN,
+        depth: int = 1,
     ) -> None:
+        if int(hidden) not in self.HIDDEN_CHOICES:
+            raise ValueError(
+                f"hidden must be one of {self.HIDDEN_CHOICES}, got {hidden!r}"
+            )
+        if int(depth) not in self.DEPTH_CHOICES:
+            raise ValueError(
+                f"depth must be one of {self.DEPTH_CHOICES}, got {depth!r}"
+            )
         self.rng = np.random.default_rng(seed)
         self.grid = np.asarray(grid, dtype=float)
         self.lr = float(lr)
@@ -275,12 +292,18 @@ class ImplicitMemory(Memory):
         self.batch = int(batch)
         self.buffer_size = int(buffer_size)
         self.threshold = float(threshold)
+        self.hidden = int(hidden)
+        self.depth = int(depth)
 
         self.W1 = self.rng.normal(0.0, 1.0 / np.sqrt(self.IN_DIM),
-                                  (self.IN_DIM, self.HIDDEN))
-        self.b1 = np.zeros(self.HIDDEN)
-        self.W2 = self.rng.normal(0.0, 1.0 / np.sqrt(self.HIDDEN),
-                                  (self.HIDDEN, 1))
+                                  (self.IN_DIM, self.hidden))
+        self.b1 = np.zeros(self.hidden)
+        if self.depth == 2:
+            self.W1b = self.rng.normal(0.0, 1.0 / np.sqrt(self.hidden),
+                                       (self.hidden, self.hidden))
+            self.b1b = np.zeros(self.hidden)
+        self.W2 = self.rng.normal(0.0, 1.0 / np.sqrt(self.hidden),
+                                  (self.hidden, 1))
         self.b2 = np.zeros(1)
 
         self.buffer: deque = deque(maxlen=self.buffer_size)
@@ -310,10 +333,18 @@ class ImplicitMemory(Memory):
             ]
         )
 
-    def _forward(self, X: np.ndarray):
-        H = np.tanh(X @ self.W1 + self.b1)
-        z = H @ self.W2 + self.b2
+    def _forward_with_hidden(self, X: np.ndarray):
+        H1 = np.tanh(X @ self.W1 + self.b1)
+        if self.depth == 2:
+            H2 = np.tanh(H1 @ self.W1b + self.b1b)
+        else:
+            H2 = H1
+        z = H2 @ self.W2 + self.b2
         p = 1.0 / (1.0 + np.exp(-z))
+        return H1, H2, p
+
+    def _forward(self, X: np.ndarray):
+        _H1, H, p = self._forward_with_hidden(X)
         return H, p
 
     def _occupancy(self, xyz, t, oid) -> np.ndarray:
@@ -369,19 +400,29 @@ class ImplicitMemory(Memory):
             X = np.vstack([Xp, Xn])
             y = np.vstack([np.ones((half, 1)), np.zeros((half, 1))])
 
-            H, p = self._forward(X)
+            H1, H2, p = self._forward_with_hidden(X)
             # Binary cross-entropy, sigmoid output: dL/dz = (p - y), summed
             # over the batch (no 1/B factor, see the class docstring).
             gz = p - y
-            gW2 = H.T @ gz
+            gW2 = H2.T @ gz
             gb2 = gz.sum(axis=0)
-            gH = gz @ self.W2.T
-            gHt = gH * (1.0 - H * H)
-            gW1 = X.T @ gHt
-            gb1 = gHt.sum(axis=0)
+            gH2 = gz @ self.W2.T
+            if self.depth == 2:
+                gH2t = gH2 * (1.0 - H2 * H2)
+                gW1b = H1.T @ gH2t
+                gb1b = gH2t.sum(axis=0)
+                gH1 = gH2t @ self.W1b.T
+                gH1t = gH1 * (1.0 - H1 * H1)
+            else:
+                gH1t = gH2 * (1.0 - H2 * H2)
+            gW1 = X.T @ gH1t
+            gb1 = gH1t.sum(axis=0)
 
             self.W1 -= self.lr * gW1
             self.b1 -= self.lr * gb1
+            if self.depth == 2:
+                self.W1b -= self.lr * gW1b
+                self.b1b -= self.lr * gb1b
             self.W2 -= self.lr * gW2
             self.b2 -= self.lr * gb2
 
@@ -419,4 +460,6 @@ class ImplicitMemory(Memory):
 
     def size_bytes(self) -> int:
         weights = self.W1.size + self.b1.size + self.W2.size + self.b2.size
+        if self.depth == 2:
+            weights += self.W1b.size + self.b1b.size
         return int(8 * weights + 48 * len(self.buffer) + 24 * len(self.last_seen))

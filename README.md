@@ -67,10 +67,24 @@ The diagnostics sweep takes about 35 seconds:
 | `src/metrics.py` | Query sampling and metric computation |
 | `src/demo.py` | Runs seeds, evaluates the memories, writes CSV, JSON, table and figure |
 | `src/diagnostics.py` | Object-count sweep behind the failure case |
-| `tests/` | 21 tests, including a report-table consistency check |
+| `tests/` | 31 tests, including the original 21 and the extension suite |
 | `results/` | Generated outputs |
 | `REPORT.md` | Two-page report |
 | `IMPLICIT_MEMORY_NOTES.md` | Candidate mechanisms for the MLP failure, kept out of the report |
+| `EXTENSIONS.md` | Capacity sweep, relational queries, eviction and a 300-step run |
+
+## Extensions
+
+`EXTENSIONS.md` adds three follow-ups to the original benchmark:
+
+- **Capacity.** Six MLP width/depth settings at 3 and 30 objects. No setting
+  exceeds 0.184 current success at 3 objects or 0.024 at 30; the graph holds
+  0.896 and 0.904.
+- **Relational queries.** Left, right, near and nearest-of-class. Graph 0.85 to
+  0.94, dense 0.79 to 0.86, MLP 0.20 to 0.43.
+- **Maintenance and horizon.** Dense eviction does not reduce the 24.6 KB map;
+  age-10 eviction cuts past success to 0.112. A 300-step run grows the graph
+  from 16.8 to 88.4 KB with query latency 0.158 to 0.228 ms.
 
 ## Scope
 

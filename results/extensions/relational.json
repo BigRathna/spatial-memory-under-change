@@ -1,0 +1,239 @@
+{
+  "aggregate": [
+    {
+      "left_of_mean": 0.8479999999999999,
+      "left_of_std": 0.10353743284435825,
+      "memory": "graph",
+      "near_mean": 0.8240000000000001,
+      "near_std": 0.0829457654133109,
+      "nearest_of_class_mean": 0.9359999999999999,
+      "nearest_of_class_std": 0.03577708763999661,
+      "right_of_mean": 0.8719999999999999,
+      "right_of_std": 0.10353743284435826,
+      "seeds": 5
+    },
+    {
+      "left_of_mean": 0.8320000000000001,
+      "left_of_std": 0.09959919678390985,
+      "memory": "dense",
+      "near_mean": 0.792,
+      "near_std": 0.05215361924162119,
+      "nearest_of_class_mean": 0.8640000000000001,
+      "nearest_of_class_std": 0.07797435475847173,
+      "right_of_mean": 0.8559999999999999,
+      "right_of_std": 0.10807404868885039,
+      "seeds": 5
+    },
+    {
+      "left_of_mean": 0.43199999999999994,
+      "left_of_std": 0.04381780460041329,
+      "memory": "implicit",
+      "near_mean": 0.41600000000000004,
+      "near_std": 0.060663003552412394,
+      "nearest_of_class_mean": 0.2,
+      "nearest_of_class_std": 0.0632455532033676,
+      "right_of_mean": 0.43199999999999994,
+      "right_of_std": 0.04381780460041329,
+      "seeds": 5
+    }
+  ],
+  "chance": [
+    {
+      "boolean": 0.5,
+      "nearest_of_class": 0.22555555555555554,
+      "seed": 0
+    },
+    {
+      "boolean": 0.5,
+      "nearest_of_class": 0.20885714285714285,
+      "seed": 1
+    },
+    {
+      "boolean": 0.5,
+      "nearest_of_class": 0.19323809523809526,
+      "seed": 2
+    },
+    {
+      "boolean": 0.5,
+      "nearest_of_class": 0.22152380952380957,
+      "seed": 3
+    },
+    {
+      "boolean": 0.5,
+      "nearest_of_class": 0.23514574314574316,
+      "seed": 4
+    }
+  ],
+  "config": {
+    "class_labels": "ground truth (oracle) for query candidates",
+    "queries_per_type": 25,
+    "radius": 3.0,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "steps": 60
+  },
+  "per_seed": {
+    "dense": [
+      {
+        "left_of_accuracy": 0.76,
+        "left_of_n": 25,
+        "near_accuracy": 0.76,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.76,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.96,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.96,
+        "left_of_n": 25,
+        "near_accuracy": 0.76,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.92,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.92,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.92,
+        "left_of_n": 25,
+        "near_accuracy": 0.76,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.92,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.92,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.76,
+        "left_of_n": 25,
+        "near_accuracy": 0.88,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.92,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.72,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.76,
+        "left_of_n": 25,
+        "near_accuracy": 0.8,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.8,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.76,
+        "right_of_n": 25
+      }
+    ],
+    "graph": [
+      {
+        "left_of_accuracy": 0.76,
+        "left_of_n": 25,
+        "near_accuracy": 0.84,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.92,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.96,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.96,
+        "left_of_n": 25,
+        "near_accuracy": 0.76,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.96,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.92,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.96,
+        "left_of_n": 25,
+        "near_accuracy": 0.72,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.96,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.96,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.8,
+        "left_of_n": 25,
+        "near_accuracy": 0.92,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.96,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.76,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.76,
+        "left_of_n": 25,
+        "near_accuracy": 0.88,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.88,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.76,
+        "right_of_n": 25
+      }
+    ],
+    "implicit": [
+      {
+        "left_of_accuracy": 0.44,
+        "left_of_n": 25,
+        "near_accuracy": 0.48,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.2,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.44,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.44,
+        "left_of_n": 25,
+        "near_accuracy": 0.44,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.28,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.48,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.48,
+        "left_of_n": 25,
+        "near_accuracy": 0.4,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.12,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.36,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.36,
+        "left_of_n": 25,
+        "near_accuracy": 0.32,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.24,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.44,
+        "right_of_n": 25
+      },
+      {
+        "left_of_accuracy": 0.44,
+        "left_of_n": 25,
+        "near_accuracy": 0.44,
+        "near_n": 25,
+        "nearest_of_class_accuracy": 0.16,
+        "nearest_of_class_n": 25,
+        "right_of_accuracy": 0.44,
+        "right_of_n": 25
+      }
+    ]
+  },
+  "wall_seconds": 5.433317151000665
+}
